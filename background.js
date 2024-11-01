@@ -11,10 +11,10 @@ function downloadAndClose() {
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => { // Listen for tab updates
   if (changeInfo.status === 'complete' && tab.url) {
-    if (tab.url.match(/^https:\/\/www\.nexusmods\.com\/morrowind\/mods\/\d+\?tab=files/)) {   // Check if the URL matches the Nexus Mods download page pattern
-      chrome.scripting.executeScript({   // Executes the downloadAndClose function
+    if (tab.url.match(/^https:\/\/www\.nexusmods\.com\/[^\/]+\/mods\/\d+\?tab=files/)) { // Check if the URL matches the Nexus Mods download page pattern
+      chrome.scripting.executeScript({ // Executes the downloadAndClose function
         target: { tabId: tabId },
-        func: downloadAndClose  
+        func: downloadAndClose
       });
     }
   }
